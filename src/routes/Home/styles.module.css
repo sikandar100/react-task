@@ -1,0 +1,38 @@
+.launch {
+  gap: 12px;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+  text-decoration: none;
+  color: #111;
+}
+
+.launchImage,
+.noImage {
+  width: 100%;
+  height: 320px;
+}
+.launchTitle {
+  all: unset;
+  font-size: 20px;
+  font-weight: bold;
+}
+.launchImage {
+  object-fit: cover;
+}
+
+.noImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #888;
+}
+
+@media screen and (max-width: 560px) {
+  .launchImage,
+  .noImage {
+    width: 100%;
+    height: 160px;
+  }
+}

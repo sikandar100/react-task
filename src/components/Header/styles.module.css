@@ -1,0 +1,12 @@
+.header {
+  height: 80px;
+  display: flex;
+  background: #f4f4f4;
+
+  padding-inline: 12px;
+
+
+  align-items: center;
+  justify-content: space-between;
+  
+}
