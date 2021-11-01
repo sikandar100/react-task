@@ -25,3 +25,10 @@
 .allImagesWrapper :not(.selected) {
   filter: contrast(0.2)
 }
+
+
+@media screen and (max-width: 560px) {
+.currentlyViewing {
+  height: 180px;
+}
+} 
