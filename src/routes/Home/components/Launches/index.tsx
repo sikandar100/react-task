@@ -59,6 +59,7 @@ const Launches: FC = () => {
                 <div className={styles.noImage}>No Image Available</div>
               )}
               <div className={styles.launchInformation}>
+                <span className={styles.launchDate}>{dayjs(launch.launch_date_utc).format("DD MMM, YYYY")}</span>
                 <h2 className={styles.launchTitle}>{launch.mission_name}</h2>
               </div>
             </Link>
