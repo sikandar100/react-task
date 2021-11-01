@@ -45,15 +45,35 @@ export const getLaunch =
     });
   };
 
-export const getRockets = () => async (dispatch: IAppDispatch) => {
-  const rockets: IRocket[] = await (
-    await fetch("https://api.spacexdata.com/v3/rockets")
-  ).json();
+export const getRockets =
+  (offset = 0, limit = 10) =>
+  async (dispatch: IAppDispatch) => {
+    const rockets: IRocket[] = await (
+      await fetch(
+        `https://api.spacexdata.com/v3/rockets?offset=${offset}&limit=${limit}`
+      )
+    ).json();
 
-  update(dispatch, {
-    rockets: rockets.reduce(
-      (pv, cv) => ({ ...pv, [cv.id]: cv }),
-      {} as IRockets
-    ),
-  });
-};
+    update(dispatch, {
+      rockets: rockets.reduce(
+        (pv, cv) => ({ ...pv, [cv.rocket_id]: cv }),
+        {} as IRockets
+      ),
+    });
+  };
+
+export const getRocket =
+  (rocket_id: string) =>
+  async (dispatch: IAppDispatch, getState: () => IStore) => {
+    let rocket = getState().rockets[rocket_id];
+    if (!rocket)
+      rocket = await (
+        await fetch(`https://api.spacexdata.com/v3/rockets/${rocket_id}`)
+      ).json();
+
+    update(dispatch, {
+      rockets: {
+        [rocket.rocket_id]: rocket,
+      },
+    });
+  };

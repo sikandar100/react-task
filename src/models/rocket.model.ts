@@ -1,6 +1,6 @@
 export interface IRocket {
-  id: string;
-  name: string;
+  rocket_id: string;
+  rocket_name: string;
   stages: number;
   type: "rocket";
   active: boolean;
