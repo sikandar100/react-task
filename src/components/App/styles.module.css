@@ -14,5 +14,5 @@
   border-radius: 50%;
   border: 8px solid grey;
   border-right-color: pink;
-  animation: spin 0.1s linear 0s infinite;
+  animation: spin 0.5s linear 0s infinite;
 }
