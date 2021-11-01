@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
-import { IState } from "stores/types";
+import { IStore } from "stores/types";
 
-const useAppSelector = <Value>(selection: (state: IState) => Value) =>
+const useAppSelector = <Value>(selection: (state: IStore) => Value) =>
   useSelector(selection);
 
 export default useAppSelector;

@@ -1,17 +1,7 @@
-import { EAction, IAppDispatch, ITodo, ITodos } from "./types";
+/**
+ * actions are functions used to perform async operations i.e. ajax / network requests to fetch/update data
+ * actions can use dispatch to perform actions to store i.e. mutate store
+ */
+import { IAppDispatch } from "./types";
 
-export const fetchTodos = () => async (dispatch: IAppDispatch) => {
-  const response: ITodo[] = await (
-    await fetch("https://jsonplaceholder.typicode.com/todos")
-  ).json();
-
-  const todos = response.reduce(
-    (pv, cv) => ({ ...pv, [cv.id]: cv }),
-    {} as ITodos
-  );
-
-  dispatch({
-    type: EAction.UPDATE,
-    payload: { todos },
-  });
-};
+export const fetchLatestLaunches = () => (dispatch: IAppDispatch) => {};

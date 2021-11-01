@@ -1,24 +1,22 @@
 import store from "stores";
 
-export interface ITodo {
-  id: string;
-  title: string;
-  userId: string;
-  completed: boolean;
-}
-export interface ITodos {
-  [id: string]: ITodo;
+interface IRocket {}
+interface IRockets {
+  [id: string]: IRocket;
 }
 
-export interface IState {
-  todos: ITodos;
+interface ILaunch {}
+
+interface ILaunches {
+  [id: string]: ILaunch;
 }
-export enum EAction {
-  UPDATE = "UPDATE",
+export interface IStore {
+  rockets: IRockets;
+  launches: ILaunches;
 }
+export enum EAction {}
 export interface IAction {
   type: EAction;
-  payload: IState;
 }
 
 export type IAppDispatch = typeof store.dispatch;

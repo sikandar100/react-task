@@ -1,0 +1,1 @@
+models are types for the objects used in the application
