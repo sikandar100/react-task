@@ -1,22 +1,36 @@
-import { FC } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import store from "stores";
-import { decrement, increment } from "stores/actions";
+import { FC, useState } from "react";
 
-import { IState } from "stores/types";
+import styles from "./styles.module.css";
+
+import useAppSelector from "hooks/useAppSelector";
+import { fetchTodos } from "stores/actions";
+import useAppDispatch from "hooks/useAppDispatch";
 
 const App: FC = () => {
-  const count = useSelector((store: IState) => store.count);
-  const dispatch = useDispatch<typeof store.dispatch>();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<Error | null>(null);
 
-  const onDecrement = () => dispatch(decrement());
-  const onIncrement = () => dispatch(increment());
+  const count = useAppSelector((store) => Object.keys(store.todos).length);
+  const dispatch = useAppDispatch();
+
+  const onFetch = async () => {
+    setLoading(true);
+    try {
+      await dispatch(fetchTodos());
+    } catch (ex) {
+      setError(ex as Error);
+    }
+    setLoading(false);
+  };
+
+  if (loading) return <div className={styles.loader} />;
+
+  if (error) return <b>{error}</b>;
 
   return (
     <div>
-      <h1>Count: {count}</h1>
-      <button onClick={onDecrement}>Decrement</button>
-      <button onClick={onIncrement}>Increment</button>
+      <h1>Todos: {count}</h1>
+      <button onClick={onFetch}>Fetch todos</button>
     </div>
   );
 };
