@@ -29,6 +29,22 @@ export const getLaunches =
     });
   };
 
+export const getLaunch =
+  (flight_number: string) =>
+  async (dispatch: IAppDispatch, getState: () => IStore) => {
+    let launch = getState().launches[flight_number];
+    if (!launch)
+      launch = await (
+        await fetch(`https://api.spacexdata.com/v3/launches/${flight_number}`)
+      ).json();
+
+    update(dispatch, {
+      launches: {
+        [launch.flight_number]: launch,
+      },
+    });
+  };
+
 export const getRockets = () => async (dispatch: IAppDispatch) => {
   const rockets: IRocket[] = await (
     await fetch("https://api.spacexdata.com/v3/rockets")

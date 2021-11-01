@@ -1,0 +1,23 @@
+.wrapper {
+  width: 100%;
+
+  gap: 8px;
+  display: flex;
+  flex-direction: column;
+}
+.currentlyViewing {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+}
+
+.allImagesWrapper {
+  gap: 8px;
+  display: flex;
+  overflow: auto;
+}
+.allImagesWrapper > * {
+  flex-shrink: 0;
+  height: 80px;
+  object-fit: cover;
+}

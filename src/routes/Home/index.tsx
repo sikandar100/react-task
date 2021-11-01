@@ -23,9 +23,9 @@ const Home: FC = () => {
     (launch) => -dayjs(launch.launch_date_utc).valueOf()
   ).filter((launch) => !launch.upcoming);
 
-  const handleLoadMore = (offset: number, limit: number) => {
+  const handleLoadMore = async (offset: number, limit: number) => {
     setLoading(true);
-    dispatch(getLaunches(offset, limit));
+    await dispatch(getLaunches(offset, limit));
     setLoading(false);
   };
 
@@ -40,12 +40,15 @@ const Home: FC = () => {
   return (
     <div className="container">
       <h1>Latest Launches!</h1>
-      {loading ? (
+      {loading && !launches.length ? (
         <div className="loader" />
       ) : (
-        <Listing loading={true} onLoadMore={handleLoadMore}>
+        <Listing loading={loading} onLoadMore={handleLoadMore}>
           {launches.map((launch) => (
-            <Link to={`/launches/${launch.flight_number}`} className={styles.launch}>
+            <Link
+              to={`/launches/${launch.flight_number}`}
+              className={styles.launch}
+            >
               {launch.links.flickr_images[0] ? (
                 <img
                   className={styles.launchImage}
