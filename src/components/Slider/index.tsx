@@ -17,7 +17,12 @@ const Slider: FC<ISliderProps> = ({ images }) => {
       />
       <div className={styles.allImagesWrapper}>
         {images.map((img, index) => (
-          <img src={img} alt={img} onClick={() => setCurrentlyViewing(index)} />
+          <img
+            src={img}
+            alt={img}
+            onClick={() => setCurrentlyViewing(index)}
+            className={currentlyViewing === index ? styles.selected : ""}
+          />
         ))}
       </div>
     </div>
