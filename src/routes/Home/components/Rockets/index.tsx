@@ -13,7 +13,6 @@ const Rockets: FC = () => {
 
   const allRockets = useAppSelector((store) => Object.values(store.rockets));
 
-  console.debug(allRockets)
   const dispatch = useAppDispatch();
 
   const handleLoadMore = async (offset: number, limit: number) => {
